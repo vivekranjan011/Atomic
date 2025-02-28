@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.vivek'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.29.0'
+    implementation group: 'net.serenity-bdd', name: 'serenity-core', version: '4.2.16'
+    implementation group: 'net.serenity-bdd', name: 'serenity-cucumber', version: '4.2.16'
+    implementation group: 'net.serenity-bdd', name: 'serenity-junit', version: '4.2.16'
+    implementation group: 'net.serenity-bdd', name: 'serenity-rest-assured', version: '4.2.16'
+    implementation 'net.java.dev.jna:jna:5.8.0'
+    // Adding JNA Platform
+    implementation 'net.java.dev.jna:jna-platform:5.8.0'
+}
+
+test {
+    useJUnitPlatform()
+}
