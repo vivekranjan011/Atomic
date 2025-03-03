@@ -10,6 +10,8 @@ import net.serenitybdd.rest.SerenityRest;
 
 import java.util.Optional;
 
+import static helpers.Common.GLOBALMap;
+
 public class ApiCalls {
 
     private static final String BASE_URI = "https://restful-booker.herokuapp.com";
@@ -40,8 +42,9 @@ public class ApiCalls {
     }
 
     public void put(String resource){
-
         response = SerenityRest.given(requestSpecification)
+                .header("accept","application/json")
+                .header("Cookie","token="+GLOBALMap.get("token"))
                 .body(jsonRequestBody)
                 .when()
                 .put("/"+ resource)

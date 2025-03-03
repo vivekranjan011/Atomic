@@ -7,7 +7,8 @@ Feature: Update Booking for Heroku Booking Application
     Then Validate 200 as the status Code
 
   Scenario: Update Booking Info - Booking Id
-    When User re-enter details for booking
+    When Create Auth Token
+    Then User re-enter details for booking
       | firstname       | Vivek        |
       | lastname        | Ranjan      |
       | totalprice      | 1101        |
@@ -23,6 +24,6 @@ Feature: Update Booking for Heroku Booking Application
     And Get from response path "totalprice" store in "totalprice"
     And Get from response path "bookingdates.checkin" store in "checkin"
     And Get from response path "bookingdates.checkout" store in "checkout"
-    And Validate "firstname" is "Jim"
-    And Validate "totalprice" is 111
-    And Validate "checkin" is "2018-01-01"
+    And Validate "firstname" is "Vivek"
+    And Validate "totalprice" is 1101
+    And Validate "checkin" is "2025-03-03"

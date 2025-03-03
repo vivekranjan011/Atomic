@@ -12,7 +12,6 @@ public class ValidateAPIResponse extends ApiCalls{
 
 
     public void statusCode(int responseStatusCode){
-        System.out.println("Message"+response.asPrettyString());
         response.then().assertThat().statusCode(responseStatusCode);
         assertEquals(responseStatusCode, response.statusCode());
     }

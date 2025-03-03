@@ -6,6 +6,7 @@ import helpers.ValidateAPIResponse;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.serenitybdd.annotations.Shared;
 
 public class CommonStepDefs {
@@ -35,5 +36,10 @@ public class CommonStepDefs {
     @And("Validate {string} is {int}")
     public void validate_int_field_from_response(String key, int value){
         validateResponse.responseField(key, value);
+    }
+
+    @When("Create Auth Token")
+    public void create_auth_token(){
+        common.createAuthToken();
     }
 }

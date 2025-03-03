@@ -26,6 +26,7 @@ public class Common extends ApiCalls {
 
     @Step
     public void createAuthToken(){
+        authBody();
         post("auth");
         GLOBALMap.put("token",response.getBody().path("token"));
     }

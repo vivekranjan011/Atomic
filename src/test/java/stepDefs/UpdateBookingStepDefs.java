@@ -38,7 +38,6 @@ public class UpdateBookingStepDefs {
 
     @Given("Perform update {string} with {string} request")
     public void perform_get_call_with_param(String resource,String param){
-        common.createAuthToken();
         resource = resource.concat("/"+GLOBALMap.get(param));
         apiCalls.put(resource);
     }
