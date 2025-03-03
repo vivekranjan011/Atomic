@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="0" name="Verify Get Booking and Booking Lists for Heroku Booking Application" skipped="0" tests="2" time="3.93" timestamp="2025-03-03 12:49:28"><testcase name="Get List of Booking - Booking Ids"/><testcase name="Get Booking Info - Booking Id"/></testsuite>

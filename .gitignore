@@ -44,3 +44,5 @@ bin/
 
 target
 target/site/
+target/site/serenity/*.json
+target/site/serenity/SERENITY-JUNIT-*.xml
