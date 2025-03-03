@@ -1,5 +1,6 @@
 package helpers;
 
+import com.google.gson.Gson;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -14,24 +15,23 @@ public class ApiCalls {
     private static final String BASE_URI = "https://restful-booker.herokuapp.com";
     private static final RequestSpecification requestSpecification = new RequestSpecBuilder().setBaseUri(BASE_URI).setContentType(ContentType.JSON).build();
     private static String jsonRequestBody = null;
+    public static Response response = null;
 
     @Step
     public void post(String resource){
         System.out.println(jsonRequestBody);
-        SerenityRest.given(requestSpecification)
+         response = SerenityRest.given(requestSpecification)
                 .body(jsonRequestBody)
                 .when()
                 .post("/"+ resource)
                 .then()
                 .extract().response();
-        System.out.println("============================");
-
-        System.out.println(SerenityRest.lastResponse().body().asString());
+        System.out.println(response.asPrettyString());
     }
 
     @Step
     public void get(String resource){
-        Response response = SerenityRest.given(requestSpecification)
+         response = SerenityRest.given(requestSpecification)
                 .when()
                 .get("/"+resource)
                 .then().extract().response();
@@ -39,9 +39,12 @@ public class ApiCalls {
     }
 
     @Step
-    public void setBody(String body){
-        jsonRequestBody = body;
+    public void setBody(Object body){
+        Gson gson = new Gson();
+        jsonRequestBody = gson.toJson(body);
+        System.out.println(jsonRequestBody);
     }
+
 
 
 }

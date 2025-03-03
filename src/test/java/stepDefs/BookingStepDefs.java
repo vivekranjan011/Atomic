@@ -1,7 +1,10 @@
 package stepDefs;
 
+import com.google.gson.Gson;
 import helpers.ApiCalls;
+import helpers.Common;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import net.serenitybdd.annotations.Shared;
@@ -28,11 +31,18 @@ public class BookingStepDefs {
         bookingDates.put("checkin", bookingData.get("checkin"));
         bookingDates.put("checkout", bookingData.get("checkout"));
         jsonMap.put("bookingdates", bookingDates);
-        apiCalls.setBody(jsonMap.toString());
+        System.out.println(jsonMap.toString());
+        System.out.println(jsonMap.toString());
+//        Gson gson = new Gson();
+//        String jsonBody = gson.toJson(jsonMap);
+//        System.out.println(jsonBody);
+        apiCalls.setBody(jsonMap);
     }
 
     @Then("Perform post {string} request")
     public void perform_post_call(String resource){
         apiCalls.post(resource);
     }
+
+
     }

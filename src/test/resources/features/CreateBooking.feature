@@ -11,6 +11,8 @@ Feature: Verify Create Booking for Heroku Booking Application
       | checkout        | 2019-01-01 |
       | additionalneeds | Breakfast  |
     Then Perform post "booking" request
+    And Validate 200 as the status Code
+    And Get from response path "bookingid" store in "bookingid"
 
 
 

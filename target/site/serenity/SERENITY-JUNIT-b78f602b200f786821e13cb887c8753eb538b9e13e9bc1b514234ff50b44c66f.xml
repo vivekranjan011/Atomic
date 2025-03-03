@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="1" name="Verify Get Booking and Booking Lists for Heroku Booking Application" skipped="0" tests="2" time="3.17" timestamp="2025-03-03 09:31:45"><testcase name="Get List of Booking - Booking Ids"/><testcase name="Get Booking Info - Booking Id"><failure message="expected: &lt;Jim&gt; but was: &lt;firstname&gt;" type="org.opentest4j.AssertionFailedError">expected: &lt;Jim&gt; but was: &lt;firstname&gt;</failure><system-err>expected: &lt;Jim&gt; but was: &lt;firstname&gt;&#13;
+helpers.ValidateAPIResponse.responseField(ValidateAPIResponse.java:22)&#13;
+stepDefs.CommonStepDefs.validate_text_field_from_response(CommonStepDefs.java:31)&#13;
+worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)&#13;
+worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)&#13;
+</system-err></testcase></testsuite>
