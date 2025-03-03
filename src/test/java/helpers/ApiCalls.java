@@ -52,6 +52,17 @@ public class ApiCalls {
                 .extract().response();
     }
 
+    public void patch(String resource){
+        response = SerenityRest.given(requestSpecification)
+                .header("accept","application/json")
+                .header("Cookie","token="+GLOBALMap.get("token"))
+                .body(jsonRequestBody)
+                .when()
+                .patch("/"+ resource)
+                .then()
+                .extract().response();
+    }
+
     @Step
     public void setBody(Object body){
         Gson gson = new Gson();
