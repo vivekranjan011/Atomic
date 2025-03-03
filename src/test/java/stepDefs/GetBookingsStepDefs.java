@@ -8,7 +8,6 @@ import net.serenitybdd.annotations.Shared;
 import static helpers.Common.GLOBALMap;
 
 public class GetBookingsStepDefs {
-    public static
     @Shared
     ApiCalls apiCalls;
 

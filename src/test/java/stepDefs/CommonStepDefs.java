@@ -28,7 +28,7 @@ public class CommonStepDefs {
 
     @And("Validate {string} is {string}")
     public void validate_text_field_from_response(String key, String value){
-        validateResponse.responseField(key, key);
+        validateResponse.responseField(key, value);
     }
 
 

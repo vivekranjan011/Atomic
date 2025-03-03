@@ -1,23 +1,25 @@
 package stepDefs;
 
-import com.google.gson.Gson;
 import helpers.ApiCalls;
 import helpers.Common;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.serenitybdd.annotations.Shared;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class BookingStepDefs {
-    public static
+import static helpers.Common.GLOBALMap;
+
+public class UpdateBookingStepDefs {
     @Shared
     ApiCalls apiCalls;
 
-    @Given("User Enter details for booking")
+    @Shared
+    Common common;
+
+    @When("User re-enter details for booking")
     public void i_create_new_booking_with_following_data(DataTable dataTable) {
         Map<String, String> bookingData = dataTable.asMap(String.class, String.class);
         Map<String, Object> jsonMap = new HashMap<>();
@@ -34,10 +36,10 @@ public class BookingStepDefs {
         apiCalls.setBody(jsonMap);
     }
 
-    @Then("Perform post {string} request")
-    public void perform_post_call(String resource){
-        apiCalls.post(resource);
+    @Given("Perform update {string} with {string} request")
+    public void perform_get_call_with_param(String resource,String param){
+        common.createAuthToken();
+        resource = resource.concat("/"+GLOBALMap.get(param));
+        apiCalls.put(resource);
     }
-
-
-    }
+}

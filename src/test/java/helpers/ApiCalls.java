@@ -17,6 +17,7 @@ public class ApiCalls {
     private static String jsonRequestBody = null;
     public static Response response = null;
 
+
     @Step
     public void post(String resource){
         System.out.println(jsonRequestBody);
@@ -36,6 +37,16 @@ public class ApiCalls {
                 .get("/"+resource)
                 .then().extract().response();
         System.out.println(SerenityRest.lastResponse());
+    }
+
+    public void put(String resource){
+
+        response = SerenityRest.given(requestSpecification)
+                .body(jsonRequestBody)
+                .when()
+                .put("/"+ resource)
+                .then()
+                .extract().response();
     }
 
     @Step

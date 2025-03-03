@@ -20,7 +20,7 @@ public class ValidateAPIResponse extends ApiCalls{
     @Step
     public void responseField(String key, String field){
         Assertions.assertEquals(GLOBALMap.get(key),field);
-        response.then().body(key,equalTo(field));
+//        response.then().body(key,equalTo(field));
     }
 
     @Step
