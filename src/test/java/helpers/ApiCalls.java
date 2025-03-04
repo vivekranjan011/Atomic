@@ -41,6 +41,7 @@ public class ApiCalls {
         System.out.println(SerenityRest.lastResponse());
     }
 
+    @Step
     public void put(String resource){
         response = SerenityRest.given(requestSpecification)
                 .header("accept","application/json")
@@ -61,6 +62,16 @@ public class ApiCalls {
                 .patch("/"+ resource)
                 .then()
                 .extract().response();
+    }
+
+    @Step
+    public void delete(String resource){
+        response = SerenityRest.given(requestSpecification)
+                .header("Cookie","token="+GLOBALMap.get("token"))
+                .when()
+                .delete("/"+resource)
+                .then().extract().response();
+        System.out.println(response.asPrettyString());
     }
 
     @Step

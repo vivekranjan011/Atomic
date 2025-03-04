@@ -2,10 +2,6 @@
 Feature: Update Booking for Heroku Booking Application
 
 
-  Scenario: Get List of Booking - Booking Ids
-    Given Perform get "booking" request
-    Then Validate 200 as the status Code
-
   Scenario: Update Booking Info - Booking Id
     When Create Auth Token
     Then User re-enter details for booking
