@@ -1,4 +1,4 @@
-@smoke
+@smoke1
 Feature: Delete Booking for Heroku Booking Application
 
 

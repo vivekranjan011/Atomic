@@ -1,18 +1,21 @@
 @smoke
 Feature: Verify Create Booking for Heroku Booking Application
 
-  Scenario: Create Booking
+  Scenario Outline: Create Booking
     Given User Enter details for booking
-      | firstname       | Jim        |
-      | lastname        | Brown      |
-      | totalprice      | 111        |
-      | depositpaid     | true       |
-      | checkin         | 2018-01-01 |
-      | checkout        | 2019-01-01 |
-      | additionalneeds | Breakfast  |
+      | firstname       | <firstname>       |
+      | lastname        | <lastname>        |
+      | totalprice      | <totalprice>      |
+      | depositpaid     | <depositpaid>     |
+      | checkin         | <checkin>         |
+      | checkout        | <checkout>        |
+      | additionalneeds | <additionalneeds> |
     Then Perform post "booking" request
-    And Validate 200 as the status Code
+    And Validate <status> as the status Code
     And Get from response path "bookingid" store in "bookingid"
+    Examples:
+      | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds | status |
+      | Jim       | Ranjan   | 111        | true        | 2018-01-01 | 2019-01-01 | Breakfast       | 200    |
 
 
 

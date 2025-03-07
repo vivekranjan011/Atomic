@@ -2,45 +2,56 @@
 Feature: Update Booking for Heroku Booking Application
 
 
-  Scenario: Update Booking Info - Booking Id
+  Scenario Outline: Update Booking Info - Booking Id
     When Create Auth Token
     Then User re-enter details for booking
-      | firstname       | Vivek        |
-      | lastname        | Ranjan      |
-      | totalprice      | 1101        |
-      | depositpaid     | false       |
-      | checkin         | 2025-03-03 |
-      | checkout        | 2025-03-05 |
-      | additionalneeds | Breakfast  |
+      | firstname       | <firstname>       |
+      | lastname        | <lastname>        |
+      | totalprice      | <totalprice>      |
+      | depositpaid     | <depositpaid>     |
+      | checkin         | <checkin>         |
+      | checkout        | <checkout>        |
+      | additionalneeds | <additionalneeds> |
     Then Perform update "booking" with "bookingid" request
     Then Validate 200 as the status Code
-    And Get from response path "firstname" store in "firstname"
-    And Get from response path "lastname" store in "lastname"
-    And Get from response path "depositpaid" store in "depositpaid"
-    And Get from response path "totalprice" store in "totalprice"
-    And Get from response path "bookingdates.checkin" store in "checkin"
-    And Get from response path "bookingdates.checkout" store in "checkout"
-    And Validate "firstname" is "Vivek"
+    And Extract below data from the response
+      | firstname             | firstname   |
+      | lastname              | lastname    |
+      | depositpaid           | depositpaid |
+      | totalprice            | totalproce  |
+      | bookingdates.checkin  | checkin     |
+      | bookingdates.checkout | checkout    |
+    And Validate "firstname" is "<firstaname>"
     And Validate "totalprice" is 1101
     And Validate "checkin" is "2025-03-03"
 
+    Examples:
+      | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
+      | Vivek     | Ranjan   | 1101       | false       | 2025-03-03 | 2025-03-05 | Breakfast       |
 
-  Scenario: Update few Booking Info - Booking Id
+
+  Scenario Outline: Update few Booking Info - Booking Id
     When Create Auth Token
     Then User re-enter details for booking
-      | totalprice      | 4255        |
-      | depositpaid     | true       |
-      | checkin         | 2025-03-04|
-      | checkout        | 2025-03-07 |
-      | additionalneeds | Breakfast, Lunch  |
+      | totalprice      | <totalprice>             |
+      | depositpaid     | <depositpaid>             |
+      | checkin         | <checkin>       |
+      | checkout        | <checkout>      |
+      | additionalneeds | <additionalneeds> |
     Then Perform partial update "booking" with "bookingid" request
     Then Validate 200 as the status Code
-    And Get from response path "firstname" store in "firstname"
-    And Get from response path "lastname" store in "lastname"
-    And Get from response path "depositpaid" store in "depositpaid"
-    And Get from response path "totalprice" store in "totalprice"
-    And Get from response path "bookingdates.checkin" store in "checkin"
-    And Get from response path "bookingdates.checkout" store in "checkout"
-    And Validate "firstname" is "Vivek"
-    And Validate "totalprice" is 4255
+    And Extract below data from the response
+      | firstname             | firstname   |
+      | lastname              | lastname    |
+      | depositpaid           | depositpaid |
+      | totalprice            | totalproce  |
+      | bookingdates.checkin  | checkin     |
+      | bookingdates.checkout | checkout    |
+    And Validate "firstname" is "<firstname>"
+    And Validate "lastname" is "<lastname>"
+    And Validate "totalprice" is <totalprice>
     And Validate "checkin" is "2025-03-04"
+
+    Examples:
+      | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
+      | Vivek     | Ranjan   | 1101       | false       | 2025-03-03 | 2025-03-05 | Breakfast, Lunch      |

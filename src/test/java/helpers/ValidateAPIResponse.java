@@ -37,6 +37,11 @@ public class ValidateAPIResponse extends ApiCalls{
         assertThat("Value from GLOBALMap Decimal number does not match expected", GLOBALMap.get(key), Matchers.equalTo(field));
     }
 
+    @Step
+    public void responseField(String key, boolean field){
+        assertThat("Value from GLOBALMap Decimal number does not match expected", GLOBALMap.get(key), Matchers.equalTo(field));
+    }
+
 }
 
 

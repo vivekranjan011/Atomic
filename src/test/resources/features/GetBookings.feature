@@ -6,19 +6,27 @@ Feature: Verify Get Booking and Booking Lists for Heroku Booking Application
     Given Perform get "booking" request
     Then Validate 200 as the status Code
 
-  Scenario: Get Booking Info - Booking Id
+  Scenario Outline: Get Booking Info - Booking Id
     Given Perform get "booking" with "bookingid" request
     Then Validate 200 as the status Code
-    And Get from response path "firstname" store in "firstname"
-    And Get from response path "lastname" store in "lastname"
-    And Get from response path "depositpaid" store in "depositpaid"
-    And Get from response path "totalprice" store in "totalprice"
-    And Get from response path "bookingdates.checkin" store in "checkin"
-    And Get from response path "bookingdates.checkout" store in "checkout"
-    And Validate "firstname" is "Jim"
-    And Validate "totalprice" is 111
-    And Validate "checkin" is "2018-01-01"
+    And Extract below data from the response
+      | firstname             | firstname   |
+      | lastname              | lastname    |
+      | depositpaid           | depositpaid |
+      | totalprice            | totalproce  |
+      | bookingdates.checkin  | checkin     |
+      | bookingdates.checkout | checkout    |
+    And Validate "firstname" is "<firstname>"
+    And Validate "lastname" is "<lastname>"
+    And Validate "totalprice" is <totalprice>
+    And Validate "depositpaid" is "<depositpaid>"
+    And Validate "checkin" is "<checkin>"
+    And Validate "checkout" is "<checkout>"
+    And Validate "additionalneeds" is "<additionalneeds>"
 
+    Examples:
+      | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
+      | Jim       | Ranjan   | 1101       | false       | 2025-03-03 | 2025-03-05 | Breakfast       |
 
 
 

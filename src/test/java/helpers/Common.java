@@ -1,8 +1,10 @@
 package helpers;
 
+import io.cucumber.datatable.DataTable;
 import net.serenitybdd.annotations.Step;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Common extends ApiCalls {
@@ -29,5 +31,13 @@ public class Common extends ApiCalls {
         authBody();
         post("auth");
         GLOBALMap.put("token",response.getBody().path("token"));
+    }
+
+    @Step
+    public void storeValue(DataTable dataTable){
+        List<Map<String, String>> table = dataTable.asMaps(String.class, String.class);
+        for(Map<String, String>list : table){
+            GLOBALMap.put(list.get("field"),list.get("key"));
+        }
     }
 }
