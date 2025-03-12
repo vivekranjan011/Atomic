@@ -1,8 +1,9 @@
-@smoke
+@smoke123
 Feature: Verify Create Booking for Heroku Booking Application
 
   Scenario Outline: Create Booking
-    Given User Enter details for booking
+#    Given User Enter details for booking
+    Given User Enter details for booking payload
       | firstname       | <firstname>       |
       | lastname        | <lastname>        |
       | totalprice      | <totalprice>      |

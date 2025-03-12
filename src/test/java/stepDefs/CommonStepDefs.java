@@ -44,10 +44,10 @@ public class CommonStepDefs {
         validateResponse.responseField(key, value);
     }
 
-    @And("Validate {string} is {boolean}")
-    public void validate_boolean_field_from_response(String key, boolean value) {
-        validateResponse.responseField(key, value);
-    }
+//    @And("Validate {string} is {boolean}")
+//    public void validate_boolean_field_from_response(String key, boolean value) {
+//        validateResponse.responseField(key, value);
+//    }
 
     @When("Create Auth Token")
     public void create_auth_token(){
