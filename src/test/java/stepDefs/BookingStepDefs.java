@@ -1,5 +1,6 @@
 package stepDefs;
 
+import builder.Booking;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import helpers.ApiCalls;
@@ -54,6 +55,23 @@ public class BookingStepDefs {
                 bookingData.get("additionalneeds"), bookingDates);
         String body = jacksonLibs.bodyAsJsonString(bookingDTO);
         apiCalls.setBody(body);
+    }
+
+    @Given("User builds details for booking payload")
+    public void i_builds_new_booking_with_following_data_for_payload(DataTable dataTable) throws JsonProcessingException {
+        Map<String, String> bookingData = dataTable.asMap(String.class, String.class);
+        Map<String, Object> jsonMap = new HashMap<>();
+
+        Booking.BookingDates buildBookingDates = new Booking.BookingDates.BookingDatesBuilder()
+                .setCheckin(bookingData.get("checkin")).setCheckout(bookingData.get("checkout")).build();
+
+        Booking booking = new Booking.BookingBuilder().setFirstname(bookingData.get("firstname")).setLastname(bookingData.get("lastname"))
+                .setDepositpaid(Boolean.parseBoolean(bookingData.get("depositpaid"))).
+                setTotalprice(Integer.parseInt(bookingData.get("totalprice")))
+                .setAdditionalneeds(bookingData.get("additionalneeds")).setBookingDates(buildBookingDates).build();
+
+//        String body = jacksonLibs.bodyAsJsonString(booking);
+        apiCalls.setBody(booking);
     }
 
     @Then("Perform post {string} request")
